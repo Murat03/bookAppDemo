@@ -1,4 +1,5 @@
 ﻿using bookAppDemo.Data;
+using bookAppDemo.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +27,17 @@ namespace bookAppDemo.Controllers
             }
 
             return Ok(result);
+        }
+        [HttpPost]
+        public IActionResult CreateOneBook([FromBody]Book book)
+        {
+            if(book == null)
+            {
+                return BadRequest();
+            }
+
+            ApplicationContext.Books.Add(book);
+            return StatusCode(201, book);
         }
     }
 }
