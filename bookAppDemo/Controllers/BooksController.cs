@@ -39,5 +39,18 @@ namespace bookAppDemo.Controllers
             ApplicationContext.Books.Add(book);
             return StatusCode(201, book);
         }
+        [HttpPut("{id:int}")]
+        public IActionResult UpdateOneBook([FromRoute(Name = "id")]int id,
+            [FromBody] Book book)
+        {
+            var entity = ApplicationContext.Books.Find(b => b.Id == id);
+
+            ApplicationContext.Books.Remove(entity);
+
+            ApplicationContext.Books.Add(book);
+
+            return NoContent();
+
+        }
     }
 }
