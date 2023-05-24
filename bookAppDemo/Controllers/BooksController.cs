@@ -43,7 +43,15 @@ namespace bookAppDemo.Controllers
         public IActionResult UpdateOneBook([FromRoute(Name = "id")]int id,
             [FromBody] Book book)
         {
+            //check book?
             var entity = ApplicationContext.Books.Find(b => b.Id == id);
+
+            if(entity is null)
+                return NotFound(); // 404
+            
+            //check id
+            if(book.Id != id)
+                return BadRequest(); // 400
 
             ApplicationContext.Books.Remove(entity);
 
