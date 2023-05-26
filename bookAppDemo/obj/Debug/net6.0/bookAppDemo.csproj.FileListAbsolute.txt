@@ -30,3 +30,7 @@ D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\obj\De
 D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\obj\Debug\net6.0\bookAppDemo.pdb
 D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\obj\Debug\net6.0\bookAppDemo.genruntimeconfig.cache
 D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\obj\Debug\net6.0\ref\bookAppDemo.dll
+D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Yazilim\C#\AspNetCoreWebApiCourse\Applications\bookAppDemo\bookAppDemo\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

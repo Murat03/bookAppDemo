@@ -1,6 +1,7 @@
 ﻿using bookAppDemo.Data;
 using bookAppDemo.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bookAppDemo.Controllers
@@ -16,6 +17,7 @@ namespace bookAppDemo.Controllers
 
             return Ok(result);
         }
+
         [HttpGet("{id:int}")]
         public IActionResult GetOneBook([FromRoute(Name = "id")]int id)
         {
@@ -28,6 +30,7 @@ namespace bookAppDemo.Controllers
 
             return Ok(result);
         }
+        
         [HttpPost]
         public IActionResult CreateOneBook([FromBody]Book book)
         {
@@ -39,9 +42,10 @@ namespace bookAppDemo.Controllers
             ApplicationContext.Books.Add(book);
             return StatusCode(201, book);
         }
+        
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")]int id,
-            [FromBody] Book book)
+        public IActionResult UpdateOneBook(
+            [FromRoute(Name = "id")]int id, [FromBody] Book book)
         {
             //check book?
             var entity = ApplicationContext.Books.Find(b => b.Id == id);
@@ -60,12 +64,14 @@ namespace bookAppDemo.Controllers
             return NoContent();
 
         }
+        
         [HttpDelete]
         public IActionResult DeleteAllBooks()
         {
             ApplicationContext.Books.Clear();
             return NoContent(); //204
         }
+        
         [HttpDelete("{id:int}")]
         public IActionResult DeleteOneBook([FromRoute(Name = "id")]int id)
         {
@@ -80,6 +86,21 @@ namespace bookAppDemo.Controllers
             }
             ApplicationContext.Books.Remove(entity);
             return NoContent();
+        }
+
+        [HttpPatch("{id:int}")]
+        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")]int id,
+            [FromBody] JsonPatchDocument<Book> bookPatch)
+        {
+            //check entity
+            var entity = ApplicationContext.Books.Find(b => b.Id.Equals(id));
+
+            if(entity == null)
+            {
+                return NotFound(); //404
+            }
+            bookPatch.ApplyTo(entity);
+            return NoContent(); //204
         }
     }
 }
